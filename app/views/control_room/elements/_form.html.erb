@@ -1,0 +1,3 @@
+<% @item.attributes.except('id', 'position', 'status', 'slug', 'created_at', 'updated_at').each do |key, value| %> 
+  <%= f.input key %>
+<% end %>

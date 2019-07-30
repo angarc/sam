@@ -1,0 +1,3 @@
+<% @item.attributes.except('id', 'status', 'slug', 'created_at', 'updated_at').each do |key, value| %> 
+  <p><strong><%= key %>: </strong><%= value %></p>
+<% end %>

@@ -1,0 +1,54 @@
+<h2 class='float-left'><%= @item_name.pluralize.titleize %></h2>
+
+<div class='float-right'>
+  <% if element_model::ADDABLE %>
+    <%= link_to fa_icon('plus', text: "New #{@item_name.titleize}"), {action: :new, id: @item}, class: 'btn btn-md btn-success' %>
+  <% end %>
+</div>
+
+<hr class='fix-float'>
+
+<% if @items.present? %>
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"><%= @item_name.pluralize.titleize %></th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td>
+            <strong><%= truncate(item.label, length: 70) %></strong><br>
+            <small><%= item.sublabel %></small>
+          </td>
+          <td>
+            <% if element_model::VIEWABLE %>
+              <%= link_to fa_icon('eye', text: 'View'), { action: :show, id: item }, class: 'btn btn-primary btn-sm mt-2'%>
+            <% end %>
+
+            <% if element_model::EDITABLE %>
+              <%= link_to fa_icon('edit', text: 'Edit'), { action: :edit, id: item }, class: 'btn btn-primary btn-sm mt-2'%>
+            <% end %>
+
+            <% if element_model::PUBLISHABLE %>
+              <% if item.unpublished? %>
+                <%= link_to fa_icon('edit', text: 'Publish'), { action: :toggle_status, id: item }, method: :post, class: 'btn btn-primary btn-sm mt-2' %>
+              <% else %>
+                <%= link_to fa_icon('edit', text: 'Unpublish'), { action: :toggle_status, id: item }, method: :post, class: 'btn btn-primary btn-sm mt-2' %>
+              <% end %>
+            <% end %>
+
+            <% if element_model::DELETEABLE %>
+              <%= link_to fa_icon('trash', text: 'Delete'), { action: :destroy, id: item }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2' %>
+            <% end %>
+
+            <%= link_to fa_icon('arrow-up'), { action: :increment_pos, id: item }, method: :post, class: 'btn btn-sm btn-primary mt-2' %>
+            <%= link_to fa_icon('arrow-down'), { action: :decrement_pos, id: item }, method: :post, class: 'btn btn-sm btn-primary mt-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

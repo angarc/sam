@@ -1,0 +1,16 @@
+<h2 class='float-left'>Create A New <%= @item_name %></h2>
+<%= link_to fa_icon('eye', text: "View All #{@item_name.pluralize}"), { controller: "#{@item_name.pluralize.underscore}", action: "index" }, class: 'btn btn-md btn-success float-right'%>
+
+<hr class='fix-float'>
+
+<%= simple_form_for @item, url: {action: :create} do |f| %>
+
+  <%= render partial: 'form', locals: { f: f } %>
+
+  <%= f.submit class: 'mb-10 btn btn-md btn-primary' %>
+
+<% end %>
+
+<br>
+
+<p><%= link_to 'Back', :back %></p>

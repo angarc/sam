@@ -10,7 +10,7 @@ class Create<%= model.pluralize.underscore.camelize %> < ActiveRecord::Migration
       t.timestamps
     end
 
-    ControlRoom::Section.create(title: "<%= model.pluralize.titleize %>", controller: "<%= model.pluralize.underscore %>")
+    ControlRoom::Section.create(icon: 'cubes', title: "<%= model.pluralize.titleize %>", controller: "<%= model.pluralize.underscore %>")
   end
 
   def down

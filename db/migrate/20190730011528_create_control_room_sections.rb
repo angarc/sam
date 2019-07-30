@@ -1,9 +1,10 @@
 class CreateControlRoomSections < ActiveRecord::Migration[6.0]
   def change
-    create_table :control_room_sections do |t|
+    create_table :sections do |t|
 
       t.string :controller
       t.string :title
+      t.string :icon
 
       t.timestamps
     end
