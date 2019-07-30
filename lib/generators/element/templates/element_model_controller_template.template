@@ -1,0 +1,7 @@
+class ControlRoom::<%= model.camelcase.pluralize %>Controller < ControlRoom::ElementsController
+
+  def element_model
+    <%= model.camelcase %>
+  end
+
+end
