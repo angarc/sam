@@ -1,0 +1,28 @@
+<%= f.association :blog %>
+
+<%= f.input :category %>
+
+<%= f.input :primary_search_query %>
+
+<%= f.input :title %>
+
+<%= f.input :title_length, readonly: true %>
+
+<%= f.input :post_type, collection: Post.post_types.keys, label_method: -> (key){ key.titleize } %>
+
+<%= f.input :status, collection: Post.statuses.keys, label_method: -> (key){ key.titleize } %>
+
+<%= f.input :word_count %>
+
+<label>Date Published</label><br>
+<%= f.date_field :date_published %> 
+
+<p></p>
+
+<script>
+  $(function() {
+    $('#post_title').bind('input', function() {
+      $('#post_title_length').val($(this).val().length)
+    })
+  })
+</script>

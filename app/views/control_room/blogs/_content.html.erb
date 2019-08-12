@@ -1,0 +1,9 @@
+<strong>Total Number of Posts Published: </strong><%= @item.posts.num_published %><br>
+<strong>Pillar Posts Completed: </strong><%= @item.posts.posts_completed_for_type(:pillar) %><br>
+<strong>Staple Posts Completed: </strong><%= @item.posts.posts_completed_for_type(:staple) %><br>
+<strong>Response Posts Completed: </strong><%= @item.posts.posts_completed_for_type(:response) %><br>
+<% 7.times do |i| %>
+  <strong>Posts That Are <%= "#{pluralize(i+1, 'Month')}"%> Old
+  : </strong><%= @item.posts.published_posts_old_in_months((i+1)) %><br>
+<% end %>
+<strong>Posts That Are Older Than 8 Months: </strong><%= @item.posts.published_posts_older_than_in_months(8) %><br>
