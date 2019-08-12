@@ -1,4 +1,4 @@
-<h2 class='float-left'><%= @item.class.to_s.titleize %></h2>
+<h2 class='float-left'><%= @item.label.titleize %></h2>
 
 <div class='float-right'>
   <%= link_to fa_icon('eye', text: "View all #{@item_name.titleize.pluralize}"), {action: :index, controller: @item_name.pluralize.underscore}, class: 'btn btn-success btn-md' %>

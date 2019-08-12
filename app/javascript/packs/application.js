@@ -8,5 +8,8 @@ import 'bootstrap'
 import 'startbootstrap-sb-admin-2/js/sb-admin-2'
 
 import '../src/stylesheets/application.scss'
+
+import 'chart.js'
+
 require("trix")
 require("@rails/actiontext")
