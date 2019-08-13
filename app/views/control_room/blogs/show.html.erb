@@ -1,6 +1,7 @@
 <h2 class='float-left'><%= @item.label.titleize %></h2>
 
 <div class='float-right'>
+  <%= link_to fa_icon('crosshairs', text: 'Hit List'), control_room_blog_posts_path(@item), class: 'btn btn-md btn-secondary'%>
   <%= link_to fa_icon('lightbulb', text: 'Ideation & Selection'), control_room_blog_potential_posts_path(@item), class: 'btn btn-md btn-primary' %>
   <%= link_to fa_icon('box', text: 'Brand Plan'), control_room_blog_brand_plan_categories_path(@item), class: 'btn btn-md btn-info' %>
   <%= link_to fa_icon('clipboard', text: 'Statistics'), {action: :statistics, id: @item.id}, class: 'btn btn-md btn-warning' %>

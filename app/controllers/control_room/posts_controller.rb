@@ -6,7 +6,7 @@ class ControlRoom::PostsController < ControlRoom::ElementsController
 
   def index
     @blog = Blog.friendly.find(params[:blog_id])
-    @items = @blog.posts
+    @items = @blog.posts.page(params[:page]).per(20)
   end
 
   def new

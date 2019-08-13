@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-500.times do |i|
+1000.times do |i|
   type_chance = Random.rand(10) + 1
   type = nil
   case type_chance
@@ -40,7 +40,7 @@
     blog_id: Blog.first.id,
     category: Faker::Coffee.blend_name,
     primary_search_query: Faker::Marketing.buzzwords,
-    title: Faker::Book.title,
+    title: "#{Faker::Book.title} #{i}",
     post_type: type,
     status: status,
     date_published: date_chance.month.ago,

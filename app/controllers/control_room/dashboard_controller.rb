@@ -3,7 +3,6 @@ module ControlRoom
 
     def hitlists
       @blogs = Blog.all.includes(:posts)
-      
     end
     
   end

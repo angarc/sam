@@ -1,1 +1,7 @@
-<div class='float-right'><%= link_to fa_icon('plus', text: 'Add Post'), new_control_room_blog_post_path(@item), class: 'btn btn-primary btn-md' %></div>
+<p class='lead'>Here are the posts you should work on...</p>
+
+<% @posts.each do |post| %>
+  <ul>
+    <li><%= post.title.titleize %></li>
+  </ul>
+<% end %>

@@ -52,6 +52,14 @@ class Blog < ApplicationRecord
     num_words
   end
 
+  def num_potential_posts
+    num = 0
+    self.brand_plan_categories.each do |category|
+      num += category.estimated_number_of_possible_posts
+    end
+    num
+  end
+
   private
   def create_statistics_overview
     self.statistics_overview = StatisticOverview.create(blog_id: self.id)
