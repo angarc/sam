@@ -17,7 +17,7 @@ class Post < ApplicationRecord
 
   validates :blog, presence: true
   validates :category, presence: true
-  validates :title, presence: true, uniqueness: true, length: { minimum: 5, maximum: 100 }
+  validates :title, presence: true, length: { minimum: 5, maximum: 100 }
 
   ADDABLE     = true
   EDITABLE    = true

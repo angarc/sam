@@ -9,6 +9,12 @@
   <% end %>
 </div>
 
+<% @imports.each do |import| %>
+  <% if import.custom_errors != nil %>
+    <%= import.custom_errors %>
+  <% end %>
+<% end %>
+
 <p class='lead'>Here are the posts you should work on...</p>
 
 <% @posts.each do |post| %>

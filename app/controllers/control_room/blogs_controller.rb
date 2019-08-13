@@ -10,6 +10,7 @@ class ControlRoom::BlogsController < ControlRoom::ElementsController
 
   def show
     super
+    @imports = @item.blog_spreadsheet_imports
     @posts = @item.posts.order_of_priority
   end
 
