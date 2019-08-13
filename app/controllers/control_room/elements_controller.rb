@@ -1,6 +1,7 @@
 class ControlRoom::ElementsController < ControlRoom::ApplicationController
   helper_method :element_model
   before_action :set_item_name, only: [:show, :index, :new, :edit]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :toggle_status]
   # before_action :authorize_cms_user
 
   def index
@@ -24,12 +25,9 @@ class ControlRoom::ElementsController < ControlRoom::ApplicationController
   end
 
   def edit
-    @item = element_model.friendly.find(params[:id])
   end
 
   def update
-    @item = element_model.friendly.find(params[:id])
-
     if @item.update element_params
       flash[:success] = "Successfully updated #{element_model.to_s}"
       redirect_to action: "show", id: @item
@@ -40,12 +38,9 @@ class ControlRoom::ElementsController < ControlRoom::ApplicationController
   end
 
   def show
-    @item = element_model.friendly.find(params[:id])
   end
 
   def destroy
-    @item = element_model.friendly.find(params[:id])
-
     if @item.destroy
       flash[:success] = "Successfully deleted #{element_model.to_s}"
       redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
@@ -56,7 +51,6 @@ class ControlRoom::ElementsController < ControlRoom::ApplicationController
   end
 
   def toggle_status
-    @item = element_model.friendly.find(params[:id])
     @item.toggle_status
     redirect_back(fallback_location: control_room_path)
   end
@@ -73,7 +67,11 @@ class ControlRoom::ElementsController < ControlRoom::ApplicationController
     redirect_back(fallback_location: control_room_path)
   end
 
-  private
+  protected
+
+  def set_item
+    @item = element_model.friendly.find(params[:id])
+  end
 
   def authorize_cms_user
     section = ControlRoom::Section.find_by_controller(controller_name)

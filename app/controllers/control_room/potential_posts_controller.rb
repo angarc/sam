@@ -6,7 +6,7 @@ class ControlRoom::PotentialPostsController < ControlRoom::ElementsController
 
   def new
     super
-    @blog = Blog.friendly.find(params[:blog_id])
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
   end
 
 end

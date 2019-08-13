@@ -1,7 +1,7 @@
 module ControlRoom
   class ApplicationController < ActionController::Base
     layout 'control_room/application'
-    # before_action :authenticate_cms_user!
+    before_action :authenticate_user!
 
     protected
 

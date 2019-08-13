@@ -5,17 +5,18 @@ class Blog < ApplicationRecord
   after_create :create_statistic_overview
 
   # acts_as_list
-
   ADDABLE     = true
   EDITABLE    = true
   VIEWABLE    = true
   PUBLISHABLE = false
   DELETEABLE  = true
 
-  has_many :posts
-  has_many :brand_plan_categories
-  has_many :potential_posts
-  has_one :statistic_overview
+  belongs_to :user
+
+  has_many :posts, dependent: :destroy
+  has_many :brand_plan_categories, dependent: :destroy
+  has_many :potential_posts, dependent: :destroy
+  has_one :statistic_overview, dependent: :destroy
 
   default_scope { order(position: :asc) }
 
@@ -64,5 +65,4 @@ class Blog < ApplicationRecord
   def create_statistics_overview
     self.statistics_overview = StatisticOverview.create(blog_id: self.id)
   end
-
 end

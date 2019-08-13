@@ -4,7 +4,7 @@
   <%= link_to fa_icon('crosshairs', text: 'Hit List'), control_room_blog_posts_path(@item), class: 'btn btn-md btn-secondary'%>
   <%= link_to fa_icon('lightbulb', text: 'Ideation & Selection'), control_room_blog_potential_posts_path(@item), class: 'btn btn-md btn-primary' %>
   <%= link_to fa_icon('box', text: 'Brand Plan'), control_room_blog_brand_plan_categories_path(@item), class: 'btn btn-md btn-info' %>
-  <%= link_to fa_icon('clipboard', text: 'Statistics'), {action: :statistics, id: @item.id}, class: 'btn btn-md btn-warning' %>
+  <%= link_to fa_icon('clipboard', text: 'Statistics'), {action: :statistics, id: @item.id}, class: 'btn btn-md btn-warning', id: :statistics_button %>
 
   <% if element_model::EDITABLE %>
     <%= link_to fa_icon('edit', text: "Edit #{@item_name.titleize.singularize}"), {action: :edit, id: @item }, class: 'btn btn-success btn-md' %>

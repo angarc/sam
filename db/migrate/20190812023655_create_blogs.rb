@@ -1,7 +1,7 @@
 class CreateBlogs < ActiveRecord::Migration[6.0]
   def up
     create_table :blogs do |t|
-
+      t.references :user, index: true
       t.string :name
       t.references :statistic_overview
       

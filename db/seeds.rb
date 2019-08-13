@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Blog.create(name: 'Drum Conclusions', user_id: User.first.id)
 
-1000.times do |i|
+
+10000.times do |i|
   type_chance = Random.rand(10) + 1
   type = nil
   case type_chance

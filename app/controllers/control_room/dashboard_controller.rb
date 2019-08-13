@@ -2,7 +2,7 @@ module ControlRoom
   class DashboardController < ControlRoom::ApplicationController
 
     def hitlists
-      @blogs = Blog.all.includes(:posts)
+      @blogs = current_user.blogs.includes(:posts)
     end
     
   end

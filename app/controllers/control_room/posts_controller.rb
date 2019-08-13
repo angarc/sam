@@ -5,13 +5,13 @@ class ControlRoom::PostsController < ControlRoom::ElementsController
   end
 
   def index
-    @blog = Blog.friendly.find(params[:blog_id])
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
     @items = @blog.posts.page(params[:page]).per(20)
   end
 
   def new
     super
-    @blog = Blog.friendly.find(params[:blog_id])
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
   end
 
 end

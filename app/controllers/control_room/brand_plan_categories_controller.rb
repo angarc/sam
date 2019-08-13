@@ -6,7 +6,7 @@ class ControlRoom::BrandPlanCategoriesController < ControlRoom::ElementsControll
 
   def new
     @item = element_model.new
-    @blog = Blog.friendly.find(params[:blog_id])
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
   end
 
 end
