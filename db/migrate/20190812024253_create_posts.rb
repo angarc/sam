@@ -17,11 +17,11 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    ControlRoom::Section.create(icon: 'sticky-note', title: "Histlists", controller: "posts")
+    # ControlRoom::Section.create(icon: 'sticky-note', title: "Histlists", controller: "posts")
   end
 
   def down
-    ControlRoom::Section.find_by_title("Histlists").destroy
+    # ControlRoom::Section.find_by_title("Histlists").destroy
     drop_table :posts
   end
 end

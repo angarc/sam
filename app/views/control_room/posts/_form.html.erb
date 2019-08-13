@@ -1,4 +1,4 @@
-<%= f.association :blog %>
+<%= f.association :blog, selected: @blog %>
 
 <%= f.input :category %>
 
@@ -15,7 +15,7 @@
 <%= f.input :word_count %>
 
 <label>Date Published</label><br>
-<%= f.date_field :date_published %> 
+<%= f.date_field :date_published, class: 'form-control' %> 
 
 <p></p>
 

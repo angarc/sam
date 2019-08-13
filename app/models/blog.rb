@@ -13,6 +13,8 @@ class Blog < ApplicationRecord
   DELETEABLE  = true
 
   has_many :posts
+  has_many :brand_plan_categories
+  has_many :potential_posts
   has_one :statistic_overview
 
   default_scope { order(position: :asc) }

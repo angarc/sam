@@ -1,0 +1,11 @@
+<% @blogs.each do |blog| %>
+
+  <h2><%= blog.name.titleize %></h2>
+  <p class='lead'>Here are the posts you should work on...</p>
+  <% blog.posts.order_of_priority.each do |post| %>
+    <ul>
+      <li><%= post.title.titleize %></li>
+    </ul>
+  <% end %>
+
+<% end %>

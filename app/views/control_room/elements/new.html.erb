@@ -1,5 +1,5 @@
-<h2 class='float-left'>Create A New <%= @item_name %></h2>
-<%= link_to fa_icon('eye', text: "View All #{@item_name.pluralize}"), { controller: "#{@item_name.pluralize.underscore}", action: "index" }, class: 'btn btn-md btn-success float-right'%>
+<h2 class='float-left'>Create A New <%= @item_name.titleize %></h2>
+<%= link_to fa_icon('eye', text: "View All #{@item_name.pluralize.titleize}"), { controller: "#{@item_name.pluralize.underscore}", action: "index" }, class: 'btn btn-md btn-success float-right'%>
 
 <hr class='fix-float'>
 

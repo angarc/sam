@@ -9,7 +9,35 @@ import 'startbootstrap-sb-admin-2/js/sb-admin-2'
 
 import '../src/stylesheets/application.scss'
 
-import 'chart.js'
+import Chart from 'chart.js'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 require("trix")
 require("@rails/actiontext")
+
+document.addEventListener('turbolinks:load', () => {
+  $('#sidebarToggle').click((e) => {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+  })
+
+  // Scroll to top button appear
+  $(document).on('scroll', function() {
+    var scrollDistance = $(this).scrollTop();
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  });
+
+  // Smooth scrolling using jQuery easing
+  // $('.scroll-to-top').click((e) => {
+  //   $('html, body').animate({
+  //     scrollTop: $("#page-top").offset().top
+  //   }, 2000);
+  // });
+})

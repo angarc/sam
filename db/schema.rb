@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_033455) do
+ActiveRecord::Schema.define(version: 2019_08_13_032132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,13 +48,25 @@ ActiveRecord::Schema.define(version: 2019_08_12_033455) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "name"
-    t.bigint "statistics_overview_id"
+    t.bigint "statistic_overview_id"
     t.string "slug"
     t.integer "status", default: 0
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["statistics_overview_id"], name: "index_blogs_on_statistics_overview_id"
+    t.index ["statistic_overview_id"], name: "index_blogs_on_statistic_overview_id"
+  end
+
+  create_table "brand_plan_categories", force: :cascade do |t|
+    t.bigint "blog_id"
+    t.string "category"
+    t.integer "estimated_number_of_possible_posts"
+    t.string "slug"
+    t.integer "status", default: 0
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id"], name: "index_brand_plan_categories_on_blog_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -83,6 +95,20 @@ ActiveRecord::Schema.define(version: 2019_08_12_033455) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_posts_on_blog_id"
+  end
+
+  create_table "potential_posts", force: :cascade do |t|
+    t.bigint "blog_id"
+    t.string "search_query"
+    t.integer "competition", default: 0
+    t.integer "will_create", default: 0
+    t.text "notes"
+    t.string "slug"
+    t.integer "status", default: 0
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id"], name: "index_potential_posts_on_blog_id"
   end
 
   create_table "sections", force: :cascade do |t|

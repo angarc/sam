@@ -1,0 +1,9 @@
+<%= f.association :blog, selected: @blog %>
+
+<%= f.input :search_query %>
+
+<%= f.input :competition, collection: PotentialPost.competitions.keys, label_method: -> (key){ key.titleize } %>
+
+<%= f.input :will_create, collection: PotentialPost.will_creates.keys, label_method: -> (key){ key.titleize } %>
+
+<%= f.input :notes %>

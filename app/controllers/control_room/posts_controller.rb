@@ -4,4 +4,14 @@ class ControlRoom::PostsController < ControlRoom::ElementsController
     Post
   end
 
+  def index
+    @blog = Blog.friendly.find(params[:blog_id])
+    @items = @blog.posts
+  end
+
+  def new
+    super
+    @blog = Blog.friendly.find(params[:blog_id])
+  end
+
 end
