@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "sam"
-set :repo_url, "https://github.com/angarc/sam.git"
+set :repo_url, "git@github.com:angarc/sam.git"
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
