@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "sam"
-set :repo_url, "git@github.com:angarc/sam.git"
+set :repo_url, "https://github.com/angarc/sam.git"
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
@@ -17,6 +17,8 @@ set :keep_releases, 5
 append :linked_files, 'config/master.key'
 
 set :ssh_options, { :forward_agent => true }
+
+set :default_shell, '/bin/bash -l'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
