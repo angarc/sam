@@ -17,8 +17,6 @@ set :keep_releases, 5
 append :linked_files, 'config/master.key'
 
 set :ssh_options, { :forward_agent => true }
-set :repository_cache, "git_cache"
-set :deploy_via, :remote_cache
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
