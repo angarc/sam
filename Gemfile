@@ -28,6 +28,8 @@ gem 'kaminari'
 
 gem 'devise', '~> 4.6.1'
 
+gem "roo", "~> 2.8.0"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

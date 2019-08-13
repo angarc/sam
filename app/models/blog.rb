@@ -16,6 +16,7 @@ class Blog < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :brand_plan_categories, dependent: :destroy
   has_many :potential_posts, dependent: :destroy
+  has_many :blog_spreadsheet_imports, dependent: :destroy
   has_one :statistic_overview, dependent: :destroy
 
   default_scope { order(position: :asc) }

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options :host => "localhost:3000"
 
   devise_for :users
   root 'pages#home'
@@ -14,12 +15,15 @@ Rails.application.routes.draw do
       end
     end
 
-  	resources :blogs do
+    resources :blogs do
+      get :settings, to: 'blogs#settings', as: :settings
+
       member do
         post :toggle_status
         post :increment_pos
         post :decrement_pos
         get 'statistics-overview', to: 'blogs#statistics', as: :statistic_overview
+        post :process_spreadsheet, to: 'blogs#process_spreadsheet', as: :process_spreadsheet
       end
       resources :brand_plan_categories do
         member do

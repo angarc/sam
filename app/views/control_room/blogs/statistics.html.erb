@@ -141,7 +141,7 @@
 
             <strong>Percentage of Brand Plan Complete: </strong> <br>
             <% if @brand_plan_categories_count != 0 %>
-              <%= (@posts.published.count / @brand_plan_categories_count) * 100 %>%
+              <%= ((@posts.published.count.to_f / @brand_plan_categories_count.to_f) * 100).round(2) %>%
             <% else %>
               Can't Calculate due to division by 0
             <% end %>
