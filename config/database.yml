@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: sam_production
-  username: sam
+  username: deploy
   password: <%= ENV['SAM_DATABASE_PASSWORD'] %>
