@@ -3,7 +3,7 @@ class BlogSpreadsheetImport < ApplicationRecord
   has_one_attached :spreadsheet, dependent: :destroy
 
   def self.process_spreadsheets
-    BlogSpreadsheetImport.all.each do |import|
+    BlogSpreadsheetImport.where(started_processing: nil).each do |import|
       import.started_processing = DateTime.now
       import.save
       blog = import.blog
