@@ -18,6 +18,18 @@ append :linked_files, 'config/master.key'
 
 set :ssh_options, { :forward_agent => true }
 
+namespace :deploy do
+  desc "Update crontab with whenever"
+  task :update_cron do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+      end
+    end
+  end
+  after :finishing, 'deploy:update_cron'
+end
+
 before "deploy:assets:precompile", "deploy:yarn_install"
 
 namespace :deploy do

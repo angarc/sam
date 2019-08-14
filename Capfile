@@ -37,6 +37,7 @@ install_plugin Capistrano::SCM::Git
 require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rvm'
+require "whenever/capistrano"
 
 set :rvm_type, :user
 set :rvm_ruby, '2.6.3'
