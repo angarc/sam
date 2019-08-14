@@ -14,4 +14,10 @@ class ControlRoom::PostsController < ControlRoom::ElementsController
     @blog = current_user.blogs.friendly.find(params[:blog_id])
   end
 
+  protected
+
+  def set_item
+    @item = current_user.blogs.friendly.find(params[:blog_id]).posts.friendly.find(params[:id])
+  end
+
 end

@@ -1,4 +1,4 @@
-<%= f.association :blog, selected: @blog %>
+<%= f.association :blog, collection: current_user.blogs, selected: @blog %>
 
 <%= f.input :category %>
 
