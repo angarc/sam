@@ -14,24 +14,34 @@ class BlogSpreadsheetImport < ApplicationRecord
       brand_array = xlsx.sheet(1).parse(headers: true)
       
       brand_array[1..-1].each do |row|
-        brand_plan_category = BrandPlanCategory.create(
-          blog_id: blog.id,
-          category: row["Category"],
-          estimated_number_of_possible_posts: row["Estimated Number of Possible Posts"]
-        )
+        begin
+          brand_plan_category = BrandPlanCategory.create(
+            blog_id: blog.id,
+            category: row["Category"],
+            estimated_number_of_possible_posts: row["Estimated Number of Possible Posts"]
+          )
+        rescue
+          import.custom_errors = "We had a couple of errors creating your hit list. We tried to pull in as much data as we could, but some could be missing. If you modified your Excel sheet, you may have modified it too much for this application to handle. If you haven't modifed it, you might want to check your excel sheet and check for any errors."
+          import.save
+        end 
       end
 
       # Ideation and Selection
       ideation_array = xlsx.sheet(2).parse(headers: true)
       # puts ideation_array
       ideation_array[1..-1].each do |row|
-        post = PotentialPost.create(
-          blog_id: blog.id,
-          search_query: row["Search Query"],
-          competition: row["Competition"].titleize.gsub(' ', '').underscore,
-          will_create: row["Will You Create the Content?"].titleize.gsub(' ', '').underscore,
-          notes: row["Notes"]
-        )
+        begin
+          post = PotentialPost.create(
+            blog_id: blog.id,
+            search_query: row["Search Query"],
+            competition: row["Competition"].titleize.gsub(' ', '').underscore,
+            will_create: row["Will You Create the Content?"].titleize.gsub(' ', '').underscore,
+            notes: row["Notes"]
+          )
+        rescue
+          import.custom_errors = "We had a couple of errors creating your hit list. We tried to pull in as much data as we could, but some could be missing. If you modified your Excel sheet, you may have modified it too much for this application to handle. If you haven't modifed it, you might want to check your excel sheet and check for any errors."
+          import.save
+        end
       end
 
       hit_list = xlsx.sheet(3)
