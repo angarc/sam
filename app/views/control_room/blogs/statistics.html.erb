@@ -68,7 +68,7 @@
       <div class="card-body text-primary">
         <strong>Total Approx Words Left in Hit list: </strong><br> <%= number_with_delimiter(@words_left) %>
         <hr>
-        <strong>Cost of remaining Hit List @ 3 cents per word: </strong><br> <%= number_to_currency(@words_left * 3) %>
+        <strong>Cost of remaining Hit List @ 3 cents per word: </strong><br> <%= number_to_currency(@words_left * 0.03) %>
         <hr>
         <strong>Cost to purchase 10 posts of each post type: </strong><br>
         <%= number_to_currency(((10*1350)+(10*2500)+(10*3500))*0.03) %>
