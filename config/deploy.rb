@@ -18,8 +18,6 @@ append :linked_files, 'config/master.key'
 
 set :ssh_options, { :forward_agent => true }
 
-set :default_shell, '/bin/bash -l'
-
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
