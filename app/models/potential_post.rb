@@ -12,7 +12,7 @@ class PotentialPost < ApplicationRecord
   PUBLISHABLE = false
   DELETEABLE  = true
 
-  default_scope { order(position: :asc) }
+  default_scope { order(created_at: :desc) }
 
   belongs_to :blog
 

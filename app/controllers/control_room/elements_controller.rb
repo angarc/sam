@@ -16,8 +16,13 @@ class ControlRoom::ElementsController < ControlRoom::ApplicationController
     @item = element_model.new element_params
 
     if @item.save
-      flash[:success] = "Successfully created #{element_model.to_s}"
-      redirect_to action: "show", id: @item
+      respond_to do |format|
+        format.html {
+          flash[:success] = "Successfully created #{element_model.to_s}"
+          redirect_to action: "show", id: @item
+        }
+        format.js
+      end
     else
       flash[:danger] = @item.errors.full_messages.to_sentence
       redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
@@ -42,8 +47,14 @@ class ControlRoom::ElementsController < ControlRoom::ApplicationController
 
   def destroy
     if @item.destroy
-      flash[:success] = "Successfully deleted #{element_model.to_s}"
-      redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
+      respond_to do |format|
+        format.html {
+          flash[:success] = "Successfully deleted #{element_model.to_s}"
+          redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
+        }
+
+        format.js
+      end
     else
       flash[:danger] = @item.errors.full_messages.to_sentence
       redirect_to action: "index", controller: element_model.to_s.pluralize.underscore

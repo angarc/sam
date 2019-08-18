@@ -1,5 +1,10 @@
 <%= f.association :blog, collection: current_user.blogs, selected: @blog %>
 
-<%= f.input :category %>
-
-<%= f.input :estimated_number_of_possible_posts %>
+<div class='row'>
+  <div class='col-lg-6'>
+    <%= f.input :category %>
+  </div>
+  <div class='col-lg-6'>
+    <%= f.input :estimated_number_of_possible_posts %>
+  </div>
+</div>

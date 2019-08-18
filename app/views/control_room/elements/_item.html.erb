@@ -1,0 +1,10 @@
+<li class="list-group-item" id='<%= item.id %>'>
+  <div class='float-left'>
+    <strong><%= item.label %></strong><br>
+    <%= item.sublabel %>
+  </div>
+  <div class='float-right'>
+    <%= link_to fa_icon('edit'), { action: :edit, id: item }, class: 'btn btn-info btn-circle btn-sm'%>
+    <%= link_to fa_icon('trash'), { action: :destroy, id: item }, method: :delete, remote: true, class: 'btn btn-sm btn-circle btn-danger' %>
+  </div>
+</li>

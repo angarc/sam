@@ -1,0 +1,2 @@
+var listGroup = document.getElementById('elements-list-group');
+listGroup.innerHTML = "<%= escape_javascript render(partial: 'item', locals: { item: @item }) %>" + listGroup.innerHTML;

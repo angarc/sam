@@ -1,21 +1,36 @@
 <%= f.association :blog, collection: current_user.blogs, selected: @blog %>
 
-<%= f.input :category %>
+<div class='row'>
+  <div class='col-lg-2'>
+    <%= f.input :category %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.input :primary_search_query %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.input :title %>
+  </div>
+  <div class='col-lg-2'>
+    <%= f.input :title_length, readonly: true %>
+  </div>
 
-<%= f.input :primary_search_query %>
+  <div class='col-lg-3'>
+    <%= f.input :post_type, collection: Post.post_types.keys, label_method: -> (key){ key.titleize } %>
+  </div>
 
-<%= f.input :title %>
+  <div class='col-lg-3'>
+    <%= f.input :status, collection: Post.statuses.keys, label_method: -> (key){ key.titleize } %>
+  </div>
 
-<%= f.input :title_length, readonly: true %>
+  <div class='col-lg-3'>
+    <%= f.input :word_count %>
+  </div>
 
-<%= f.input :post_type, collection: Post.post_types.keys, label_method: -> (key){ key.titleize } %>
-
-<%= f.input :status, collection: Post.statuses.keys, label_method: -> (key){ key.titleize } %>
-
-<%= f.input :word_count %>
-
-<label>Date Published</label><br>
-<%= f.date_field :date_published, class: 'form-control' %> 
+  <div class='col-lg-3'>
+    <label>Date Published</label><br>
+    <%= f.date_field :date_published, class: 'form-control' %> 
+  </div>
+</div>
 
 <p></p>
 

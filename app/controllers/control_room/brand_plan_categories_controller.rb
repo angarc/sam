@@ -5,7 +5,8 @@ class ControlRoom::BrandPlanCategoriesController < ControlRoom::ElementsControll
   end
 
   def index
-    @items = current_user.blogs.friendly.find(params[:blog_id]).brand_plan_categories
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
+    @items = @blog.brand_plan_categories
   end
 
   def new
@@ -18,8 +19,13 @@ class ControlRoom::BrandPlanCategoriesController < ControlRoom::ElementsControll
     @item = current_user.blogs.friendly.find(params[:blog_id]).brand_plan_categories.build element_params
 
     if @item.save
-      flash[:success] = "Successfully created #{element_model.to_s}"
-      redirect_to action: "show", id: @item
+      respond_to do |format|
+        format.html {
+          flash[:success] = "Successfully created #{element_model.to_s}"
+          redirect_to action: "show", id: @item
+        }
+        format.js
+      end
     else
       flash[:danger] = @item.errors.full_messages.to_sentence
       redirect_to action: "index", controller: element_model.to_s.pluralize.underscore

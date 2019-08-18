@@ -1,9 +1,7 @@
 <h2 class='float-left'>Statistics Overview</h2>
 
 <div class='float-right'>
-  <% if element_model::ADDABLE %>
-    <%= link_to fa_icon('arrow-left', text: "Back to Blog"), {action: :show, id: @item}, class: 'btn btn-md btn-success' %>
-  <% end %>
+  <%= link_to fa_icon('newspaper', text: 'Blog'), control_room_blog_path(@item), class: 'btn btn-success btn-md' %>
 </div>
 
 <hr class='fix-float'>

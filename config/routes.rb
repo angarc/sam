@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   namespace :control_room do
+  	resources :ideation_and_selection_overviews do
+      member do
+        post :toggle_status
+        post :increment_pos
+        post :decrement_pos
+      end
+    end
+
     get '/hit-lists', to: 'dashboard#hitlists', as: :hitlists
 
   	resources :statistic_overviews do

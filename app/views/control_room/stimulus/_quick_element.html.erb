@@ -1,0 +1,33 @@
+<div data-controller='quick-element'>
+  <%= link_to fa_icon('plus'), '#', data: { action: 'quick-element#addElementForm' }, class: 'btn btn-md btn-circle btn-primary float-right mb-3'%> 
+  <div class='fix-float'></div>
+
+  <div data-target='quick-element.formContainer'>
+  </div>
+
+  <div data-target='quick-element.elementsContainer' class='elements'>
+    <ul class="list-group" id='elements-list-group'>
+      <%= render partial: 'items', locals: { items: @items } %>
+    </ul>
+  </div>
+
+  <template data-target='quick-element.elementTemplate'>
+    <div class="card border-success mb-3 mt-3">
+      <div class="card-header">
+        <div class='float-left'>
+          <strong>New <%= element_model.to_s.titleize %></strong>
+        </div>
+        <div class='float-right'>
+          <%= link_to fa_icon('times'), '#', class: 'btn btn-sm btn-danger btn-circle', data: { action: 'click->quick-element#removeElementForm' } %>
+        </div>
+        <div class='fix-float'></div>
+      </div>
+      <div class="card-body text-primary">
+        <%= simple_form_for element_model.new, url: { action: :create }, remote: true do |f| %>
+          <%= render partial: 'form', locals: { f: f }%>
+          <%= f.submit 'Create', class: 'btn btn-primary btn-md', data: { action: 'quick-element#clearElementForm'} %>
+        <% end %>
+      </div>
+    </div>
+  </template>
+</div>

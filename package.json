@@ -15,6 +15,7 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "startbootstrap-sb-admin-2": "^4.0.6",
+    "stimulus": "^1.1.1",
     "trix": "^1.0.0",
     "turbolinks": "^5.2.0"
   },

@@ -1,9 +1,19 @@
 <%= f.association :blog, collection: current_user.blogs, selected: @blog %>
 
-<%= f.input :search_query %>
+<div class='row'>
+  <div class='col-lg-8'>
+    <%= f.input :search_query %>
+  </div>
 
-<%= f.input :competition, collection: PotentialPost.competitions.keys, label_method: -> (key){ key.titleize } %>
+  <div class='col-lg-2'>
+    <%= f.input :competition, collection: PotentialPost.competitions.keys, label_method: -> (key){ key.titleize } %>
+  </div>
 
-<%= f.input :will_create, collection: PotentialPost.will_creates.keys, label_method: -> (key){ key.titleize } %>
+  <div class='col-lg-2'>
+    <%= f.input :will_create, collection: PotentialPost.will_creates.keys, label_method: -> (key){ key.titleize } %>
+  </div>
 
-<%= f.input :notes %>
+  <div class='col-lg-12'>
+    <%= f.input :notes %>
+  </div>
+</div>

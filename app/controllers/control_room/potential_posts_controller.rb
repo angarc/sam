@@ -5,7 +5,8 @@ class ControlRoom::PotentialPostsController < ControlRoom::ElementsController
   end
 
   def index
-    @items = current_user.blogs.friendly.find(params[:blog_id]).potential_posts
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
+    @items = @blog.potential_posts
   end
 
   def new
@@ -17,8 +18,29 @@ class ControlRoom::PotentialPostsController < ControlRoom::ElementsController
     @item = current_user.blogs.friendly.find(params[:blog_id]).potential_posts.build(element_params)
 
     if @item.save
-      flash[:success] = "Successfully created #{element_model.to_s}"
-      redirect_to action: "show", id: @item
+      respond_to do |format|
+        format.html {
+          flash[:success] = "Successfully created #{element_model.to_s}"
+          redirect_to action: "show", id: @item
+        }
+        format.js
+      end
+    else
+      flash[:danger] = @item.errors.full_messages.to_sentence
+      redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
+    end
+  end
+
+  def destroy
+    if @item.destroy
+      respond_to do |format|
+        format.html {
+          flash[:success] = "Successfully deleted #{element_model.to_s}"
+          redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
+        }
+
+        format.js
+      end
     else
       flash[:danger] = @item.errors.full_messages.to_sentence
       redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
