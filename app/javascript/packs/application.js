@@ -40,5 +40,7 @@ document.addEventListener('turbolinks:load', () => {
   //     scrollTop: $("#page-top").offset().top
   //   }, 2000);
   // });
+
+  
 })
 import "controllers"

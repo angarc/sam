@@ -38,7 +38,7 @@ class ControlRoom::ElementsController < ControlRoom::ApplicationController
       redirect_to action: "show", id: @item
     else
       flash[:danger] = @item.errors.full_messages.to_sentence
-      redirect_to action: "index", controller: element_model.to_s.pluralize.underscore
+      redirect_to action: :edit, controller: element_model.to_s.pluralize.underscore
     end
   end
 

@@ -1,4 +1,4 @@
-<%= f.association :blog, collection: current_user.blogs, selected: @blog %>
+<%= f.input :blog_id, as: :hidden, input_html: { value: @blog.id } %>
 
 <div class='row'>
   <div class='col-lg-2'>

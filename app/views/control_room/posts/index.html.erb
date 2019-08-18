@@ -2,8 +2,73 @@
 
 <div class='float-right'>
   <%= link_to fa_icon('newspaper', text: 'Blog'), control_room_blog_path(@blog), class: 'btn btn-success btn-md' %>
+
 </div>
 
 <hr class='fix-float'>
 
-<%= render partial: 'control_room/stimulus/quick_element' %>
+<div data-controller='quick-post'>
+  <%= link_to fa_icon('plus'), '#', data: { action: 'quick-post#addElementForm' }, class: 'btn btn-md btn-circle btn-primary float-right mb-3'%> 
+  <div class='fix-float'></div>
+
+  <div data-target='quick-post.formContainer'>
+  </div>
+
+  <div data-target='quick-post.elementsContainer' class='elements'>
+    <ul class="list-group" id='elements-list-group'>
+      <%= render partial: 'items', locals: { items: @items } %>
+    </ul>
+  </div>
+
+  <template data-target='quick-post.elementTemplate'>
+    <div class="card border-success mb-3 mt-3">
+      <div class="card-header">
+        <div class='float-left'>
+          <strong>New <%= element_model.to_s.titleize %></strong>
+        </div>
+        <div class='float-right'>
+          <%= link_to fa_icon('times'), '#', class: 'btn btn-sm btn-danger btn-circle', data: { action: 'quick-post#removeElementForm' } %>
+        </div>
+        <div class='fix-float'></div>
+      </div>
+      <div class="card-body text-primary">
+        <%= simple_form_for element_model.new, url: { action: :create }, remote: true do |f| %>
+          <%= f.input :blog_id, as: :hidden, input_html: { value: @blog.id } %>
+
+          <div class='row'>
+            <div class='col-lg-2'>
+              <%= f.input :category %>
+            </div>
+            <div class='col-lg-4'>
+              <%= f.input :primary_search_query %>
+            </div>
+            <div class='col-lg-4'>
+              <%= f.input :title, input_html: { data: { action: 'input->quick-post#updateLengthField' }} %>
+            </div>
+            <div class='col-lg-2'>
+              <%= f.input :title_length, readonly: true, input_html: { class: 'length-field' } %>
+            </div>
+
+            <div class='col-lg-3'>
+              <%= f.input :post_type, collection: Post.post_types.keys, label_method: -> (key){ key.titleize } %>
+            </div>
+
+            <div class='col-lg-3'>
+              <%= f.input :status, collection: Post.statuses.keys, label_method: -> (key){ key.titleize } %>
+            </div>
+
+            <div class='col-lg-3'>
+              <%= f.input :word_count %>
+            </div>
+
+            <div class='col-lg-3'>
+              <label>Date Published</label><br>
+              <%= f.date_field :date_published, class: 'form-control' %> 
+            </div>
+          </div>
+          <%= f.submit 'Create', class: 'btn btn-primary btn-md', data: { action: 'quick-post#clearElementForm'} %>
+        <% end %>
+      </div>
+    </div>
+  </template>
+</div>

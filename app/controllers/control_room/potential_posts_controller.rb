@@ -50,7 +50,8 @@ class ControlRoom::PotentialPostsController < ControlRoom::ElementsController
   protected
 
   def set_item
-    @item = current_user.blogs.friendly.find(params[:blog_id]).potential_posts.friendly.find(params[:id])
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
+    @item = @blog.potential_posts.friendly.find(params[:id])
   end
 
 end

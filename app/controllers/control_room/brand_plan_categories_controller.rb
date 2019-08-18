@@ -14,7 +14,6 @@ class ControlRoom::BrandPlanCategoriesController < ControlRoom::ElementsControll
     @blog = current_user.blogs.friendly.find(params[:blog_id])
   end
 
-
   def create
     @item = current_user.blogs.friendly.find(params[:blog_id]).brand_plan_categories.build element_params
 
@@ -35,7 +34,8 @@ class ControlRoom::BrandPlanCategoriesController < ControlRoom::ElementsControll
   protected
 
   def set_item
-    @item = current_user.blogs.friendly.find(params[:blog_id]).brand_plan_categories.friendly.find(params[:id])
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
+    @item = @blog.brand_plan_categories.friendly.find(params[:id])
   end
 
 end
