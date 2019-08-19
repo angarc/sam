@@ -8,7 +8,7 @@
     <%= f.input :primary_search_query %>
   </div>
   <div class='col-lg-4'>
-    <%= f.input :title %>
+    <%= f.input :title, hint: 'Minimum 5 characters' %>
   </div>
   <div class='col-lg-2'>
     <%= f.input :title_length, readonly: true %>
@@ -23,7 +23,7 @@
   </div>
 
   <div class='col-lg-3'>
-    <%= f.input :word_count %>
+    <%= f.input :word_count, label: 'Word Count in Published Post', hint: 'No Commas' %>
   </div>
 
   <div class='col-lg-3'>
