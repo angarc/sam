@@ -113,7 +113,7 @@
 <div class='row mt-4'>
   <div class='col-lg-8'>
     <div class="card border-primary mb-3">
-      <div class="card-header"><strong>Posts Published Older than a Certain Time. (TOTAL: <%= @posts.not_published.count %>)</strong></div>
+      <div class="card-header"><strong>Posts Published that are Older than a Certain Time.</strong></div>
       <div class="card-body text-primary">
         <canvas id="content_age_for_all_posts"></canvas>
       </div>
@@ -247,9 +247,9 @@
             <%= @posts.incomplete_for_type(:pillar).count %>,
           ],
           backgroundColor: [
-            'rgba(41, 128, 185, 0.55)',
-            'rgba(142, 68, 173, 0.55)',
-            'rgba(22, 160, 133, 0.55)'
+            'rgba(26, 188, 156, 0.55)',
+            'rgba(231, 76, 60, 0.55)',
+            'rgba(155, 89, 182, 0.55)'
           ]
         }]
       },
