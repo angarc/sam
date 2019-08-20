@@ -20,7 +20,7 @@
 <div class='row mt-4'>
   <div class='col-lg-6'>
     <div class="card border-primary mb-3">
-      <div class="card-header"><strong>Age of Posts (in months).</strong></div>
+      <div class="card-header"><strong>Total Number of Posts Published</strong></div>
       <div class="card-body text-primary">
         <canvas id="total_posts_published"></canvas>
       </div>
@@ -113,7 +113,7 @@
 <div class='row mt-4'>
   <div class='col-lg-8'>
     <div class="card border-primary mb-3">
-      <div class="card-header"><strong>INCOMPLETE Posts in Hit List by Type (TOTAL: <%= @posts.not_published.count %>)</strong></div>
+      <div class="card-header"><strong>Posts Published Older than a Certain Time. (TOTAL: <%= @posts.not_published.count %>)</strong></div>
       <div class="card-body text-primary">
         <canvas id="content_age_for_all_posts"></canvas>
       </div>
@@ -129,9 +129,12 @@
           </div>
         </div>
       </div>
+
       <div class='col-lg-12'>
+        <hr>
+        <h3>Brand Plan</h3>
         <div class="card border-primary mb-3">
-          <div class="card-header"><strong>Breakdown by post type with publish date older than 35 weeks.</strong></div>
+          <div class="card-header"><strong>Brand Plan Overview</strong></div>
           <div class="card-body text-primary">
             <strong># of Possible Posts: </strong> <br><%= @brand_plan_categories_count %>
 
@@ -174,9 +177,9 @@
       labels: ['Response Posts', 'Staple Posts', 'Pillar Posts'],
       datasets: [{
         data: [
-          <%= @posts.not_published_for_type_and_older_than(35.weeks.ago, :response).count %>,
-          <%= @posts.not_published_for_type_and_older_than(35.weeks.ago, :staple).count %>,
-          <%= @posts.not_published_for_type_and_older_than(35.weeks.ago, :pillar).count %>,
+          <%= @posts.published.posts_for_type(:response).older_than(35.weeks.ago).count %>,
+          <%= @posts.published.posts_for_type(:staple).older_than(35.weeks.ago).count %>,
+          <%= @posts.published.posts_for_type(:staple).older_than(35.weeks.ago).count %>,
         ],
         backgroundColor: [
           'rgba(231, 76, 60, 0.55)',
@@ -204,17 +207,17 @@
         '240 Days (8 months)'
       ],
       datasets: [{
-        label: 'Posts published in the past certain number of days (# of posts)',
+        label: 'Posts published that are older than a certain time (# of posts)',
         data: [
-          <%= @posts.more_recent_than(7.day.ago).count %>,
-          <%= @posts.more_recent_than(30.day.ago).count %>,
-          <%= @posts.more_recent_than(60.day.ago).count %>,
-          <%= @posts.more_recent_than(90.day.ago).count %>,
-          <%= @posts.more_recent_than(120.day.ago).count %>,
-          <%= @posts.more_recent_than(150.day.ago).count %>,
-          <%= @posts.more_recent_than(180.day.ago).count %>,
-          <%= @posts.more_recent_than(210.day.ago).count %>,
-          <%= @posts.more_recent_than(240.day.ago).count %>,
+          <%= @posts.published.older_than(7.day.ago).count %>,
+          <%= @posts.published.older_than(30.day.ago).count %>,
+          <%= @posts.published.older_than(60.day.ago).count %>,
+          <%= @posts.published.older_than(90.day.ago).count %>,
+          <%= @posts.published.older_than(120.day.ago).count %>,
+          <%= @posts.published.older_than(150.day.ago).count %>,
+          <%= @posts.published.older_than(180.day.ago).count %>,
+          <%= @posts.published.older_than(210.day.ago).count %>,
+          <%= @posts.published.older_than(240.day.ago).count %>,
         ],
         backgroundColor: [
           'rgba(155, 89, 182, 0.55)',
@@ -327,9 +330,9 @@
           label: 'Age of Posts (in months)',
           data: [
             <% 7.times do |i| %>
-              <%= @posts.published_posts_old_in_months((i+1)).count %>,
+              <%= @posts.published.published_posts_old_in_months((i+1)).count %>,
             <% end %>
-            <%= @posts.published_posts_older_than_in_months(8).count %>
+            <%= @posts.published.published.older_than(8.months.ago).count %>
           ],
           backgroundColor: [
             'rgba(231, 76, 60,0.55)',
