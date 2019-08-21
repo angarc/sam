@@ -3,6 +3,9 @@ class PotentialPost < ApplicationRecord
   friendly_id :search_query, use: :slugged
   # acts_as_list
 
+  scope :by_competition, -> (competition_level){ where(competition: competition_level) }
+  scope :by_will_create, -> (decision){ where(will_create: decision) }
+
   enum will_create: [:no, :maybe, :yes, :added_to_hit_list]
   enum competition: [:zero, :low, :medium, :high, :extreme]
 

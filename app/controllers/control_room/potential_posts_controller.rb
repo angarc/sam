@@ -9,6 +9,25 @@ class ControlRoom::PotentialPostsController < ControlRoom::ElementsController
     @items = @blog.potential_posts
   end
 
+  def filter
+    @blog = current_user.blogs.friendly.find(params[:blog_id])
+    @items = @blog.potential_posts
+
+    begin
+      if !(params[:competition].empty?) && !(params[:competition] == 'No Filter')
+        @items = @items.by_competition(params[:competition].titleize.gsub(' ', '').underscore)
+      end
+  
+      if !(params[:will_create].empty?) && !(params[:will_create] == 'No Filter')
+        @items = @items.by_will_create(params[:will_create].titleize.gsub(' ', '').underscore)
+      end
+    rescue => exception
+      puts "FILTER ERROR: Potential Posts #{exception}"  
+    end
+
+    render partial: 'control_room/stimulus/quick_element', locals: { items: @items }
+  end
+
   def new
     super
     @blog = current_user.blogs.friendly.find(params[:blog_id])

@@ -6,13 +6,11 @@ class Post < ApplicationRecord
   enum status: [:unwritten, :in_progress, :published]
   enum post_type: [:response, :staple, :pillar]
 
-  scope :more_recent_than,                     -> (time){ where('date_published >= ?', time) }
-  scope :older_than,                           -> (time){ where('date_published < ?', time) }
-  scope :not_published,                        -> { where('status = 0 OR status = 1') }
-  scope :posts_completed_for_type,             -> (post_type) { where(post_type: post_type, status: :published) }
-  scope :posts_for_type,                       -> (post_type){ where(post_type: post_type) }
-  scope :published_posts_old_in_months,        -> (num){ where('date_published >= ? AND date_published <= ?', num.month.ago, (num - 1).month.ago) }
-  scope :published_posts_older_than_in_months, -> (num){ where('date_published <= ?', num.month.ago) }
+  scope :older_than,           -> (time){ where('date_published < ?', time) }
+  scope :not_published,        -> { where('status = 0 OR status = 1') }
+  scope :completed_for_type,   -> (post_type) { where(post_type: post_type, status: :published) }
+  scope :posts_for_type,       -> (post_type){ where(post_type: post_type) }
+  scope :old_in_months,        -> (num){ where('date_published >= ? AND date_published <= ?', num.month.ago, (num - 1).month.ago) }
   default_scope { order(position: :asc) }
 
 

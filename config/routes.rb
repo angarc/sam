@@ -48,6 +48,9 @@ Rails.application.routes.draw do
         end
       end
       resources :potential_posts do
+        collection do
+          get :filter
+        end
         member do
           post :toggle_status
           post :increment_pos

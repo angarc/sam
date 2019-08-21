@@ -8,4 +8,50 @@
 
 <hr class='fix-float'>
 
-<%= render partial: 'control_room/stimulus/quick_element' %> 
+<strong>Filters</strong>
+
+<div>
+  <label for='competition-filter'>Competition</label>
+  <select id='competition-filter'>
+    <option>No Filter</option>
+    <option>Zero</option>
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+    <option>Extreme</option>
+  </select>
+</div>
+
+<div>
+  <label for='will-create-filter'>Will You Create It?</label>
+  <select id='will-create-filter'>
+    <option>No Filter</option>
+    <option>No</option>
+    <option>Maybe</option>
+    <option>Yes</option>
+    <option>Added To Hit List</option>
+  </select>
+</div>
+
+<div class='potential-posts'>
+  <%= render partial: 'control_room/stimulus/quick_element' %> 
+</div>
+
+<script>
+  $(function() {
+    $('select').on('change', function() {
+      $filter = $(this)
+      $.ajax({
+        url: '<%= filter_control_room_blog_potential_posts_path(@blog) %>',
+        data: { 
+          blog_id: '<%= @blog.slug %>',
+          competition: $('#competition-filter').val(),
+          will_create: $('#will-create-filter').val()
+        },
+        success: function(data) {
+          $('.potential-posts').html(data)
+        }
+      })
+    })
+  })
+</script>

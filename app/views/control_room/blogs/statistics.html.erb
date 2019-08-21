@@ -6,15 +6,6 @@
 
 <hr class='fix-float'>
 
-<!-- <strong>Total Number of Posts Published: </strong><%= @posts.published %><br> -->
-<!-- <strong>Pillar Posts Completed: </strong><%= @posts.posts_completed_for_type(:pillar) %><br>
-<strong>Staple Posts Completed: </strong><%= @posts.posts_completed_for_type(:staple) %><br>
-<strong>Response Posts Completed: </strong><%= @posts.posts_completed_for_type(:response) %><br> -->
-<!-- <% 7.times do |i| %>
-  <strong>Posts That Are <%= "#{pluralize(i+1, 'Month')}"%> Old: 
-  </strong><%= @posts.published_posts_old_in_months((i+1)) %><br>
-<% end %> -->
-<!-- <strong>Posts That Are Older Than 8 Months: </strong><%= @posts.published_posts_older_than_in_months(8) %><br> -->
 <h3><strong>SNAPSHOT</strong> <em>(Include all these data when posting in the community.)</em></h3>
 
 <div class='row mt-4'>
@@ -307,9 +298,9 @@
         datasets: [{
           label: 'Posts Published by Type (# of posts)',
           data: [
-            <%= @posts.posts_completed_for_type(:response).count %>, 
-            <%= @posts.posts_completed_for_type(:staple).count %>,
-            <%= @posts.posts_completed_for_type(:pillar).count %>
+            <%= @posts.completed_for_type(:response).count %>, 
+            <%= @posts.completed_for_type(:staple).count %>,
+            <%= @posts.completed_for_type(:pillar).count %>
           ],
           backgroundColor: [
             'rgba(231, 76, 60, 0.55)',
@@ -330,9 +321,9 @@
           label: 'Age of Posts (in months)',
           data: [
             <% 7.times do |i| %>
-              <%= @posts.published.published_posts_old_in_months((i+1)).count %>,
+              <%= @posts.published.old_in_months((i+1)).count %>,
             <% end %>
-            <%= @posts.published.published.older_than(8.months.ago).count %>
+            <%= @posts.published.older_than(8.months.ago).count %>
           ],
           backgroundColor: [
             'rgba(231, 76, 60,0.55)',
