@@ -28,7 +28,7 @@ gem 'yaml_db'
 # gem 'image_processing', '~> 1.2'
 gem 'kaminari'
 
-gem 'devise', '~> 4.6.1'
+gem 'devise', '~> 4.7.1'
 
 gem "roo", "~> 2.8.0"
 
