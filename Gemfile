@@ -37,7 +37,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'font-awesome-rails'
 gem 'friendly_id', '~> 5.2.4'
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 
 gem 'whenever', require: false
 
